@@ -20,11 +20,13 @@ class AudioSampler:
         self.sample_format = pyaudio.paInt16
 
         self.pa = pyaudio.PyAudio()  # Create an interface to PortAudio
-        self.stream = self.pa.open(format=self.sample_format,
-                                    channels=self.channels,
-                              rate=self.sample_rate,
-                              frames_per_buffer=self.chunk_size,
-                              input=True)
+        self.stream = self.pa.open(
+            format=self.sample_format,
+            channels=self.channels,
+            rate=self.sample_rate,
+            frames_per_buffer=self.chunk_size,
+            input=True,
+        )
 
     def record_chunk(self):
         data = self.stream.read(self.chunk_size, exception_on_overflow=False)
